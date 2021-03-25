@@ -1,0 +1,153 @@
+{% extends 'core/base.html' %} {% load static %} {% load humanize %} 
+{% load blog_extra %} {% block title %} {{bpost.title}} {% endblock title%} 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/blogpost.css' %}" />
+<link rel="stylesheet" href="{% static 'css/icon.css' %}" />
+{% endblock css %} {% block banner %}
+<section class="banner mb-5">
+  <video
+    src="{% static 'images/video.mp4' %}"
+    class="img-fluid"
+    autoplay
+    muted
+    loop
+  ></video>
+  <div class="overlay"></div>
+</section>
+{% endblock banner %} {% block content %}
+
+<!--blogpost section start-->
+<div class="container context" id="blog">
+  <h3 class="text-center display-4">{{bpost.title}}</h3>
+  <hr class="w-50 mx-auto" />
+
+  <!--col start-->
+  <div class="container">
+    <div class="thumbnail">
+      <img src="{{bpost.thumbnail.url}}" class="img-fluid" alt="" />
+    </div>
+    <h1>{{bpost.title}}</h1>
+    <div class="content">{{bpost.content|safe}}</div>
+  </div>
+
+  <!--col end-->
+</div>
+
+<!--comment section-->
+<div class="container mb-5 mt-5">
+  <h1>Comments({{comment.count}})</h1>
+  <!--display form when user is logged in-->
+  {% if user.is_authenticated %}
+  <form action="/postcomment/" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label"
+        >Post your comment here:</label
+      >
+      <input
+      required
+        type="text"
+        name="comment"
+        class="form-control"
+        placeholder="Enter your comment"
+      />
+      <input type="hidden" name="comtid" value="{{bpost.id}}" />
+      <input type="hidden" name="parentid" value="" />
+    </div>
+
+    <button type="submit" class="btn btn-dark">Submit</button>
+  </form>
+  {% else %}
+
+  <p>Please login to post a comment:</p>
+
+  {% endif %} 
+  {% for cmt in comment %}
+  <div class="row mt-5">
+    <div class="col-md-1">
+      <img
+        src="{% static 'images/user.png' %}"
+        class="img-fluid w-50 rounded"
+        alt=""
+      />
+    </div>
+    <div class="col-md-11 pt-4 pb-4">
+      <b>{{cmt.user.username}} at {{cmt.time | naturaltime}}</b> says:
+      <div>{{cmt.cmt_content}}</div>
+      <!--reply section-->
+      <div class="reply mt-3">
+        <button
+          class="btn btn-dark"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#reply{{cmt.Sno}}"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Reply
+        </button>
+        <div class="collapse" id="reply{{cmt.Sno}}">
+          <div class="card card-body">
+            <!--reply form-->
+            {% if user.is_authenticated %}
+            <form action="/postcomment/" method="post">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Enter your reply:</label
+                >
+                <input
+                required
+                  type="text"
+                  class="form-control"
+                  name="comment"
+                  placeholder="Enter your reply"
+                />
+                <input type="hidden" name="parentid" value="{{cmt.Sno}}" />
+                <input type="hidden" name="comtid" value="{{bpost.id}}" />
+              </div>
+
+              <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+            {% else %}
+            <p>Please login to reply:</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="box mt-3">
+        {% for i in repdict|get_value:cmt.Sno %}
+        <div class="row mt-5 mx-2">
+          <div class="col-md-1">
+            <img
+              src="{% static 'images/user.png' %}"
+              class="img-fluid w-50 rounded"
+              alt=""
+            />
+          </div>
+          <div class="col-md-11 pt-4 pb-4">
+          <b>{{i.user.username}} at {{i.time | naturaltime}}</b> says:
+            {{i.cmt_content}}
+            <br />
+          </div>
+        </div>
+            {% endfor %}
+          
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+<!--blogpost section end-->
+<div class="container social mb-5">
+  <a href="#" class="fa fa-facebook"></a>
+  <a href="#" class="fa fa-twitter"></a>
+  <a href="#" class="fa fa-linkedin"></a>
+  <a href="#" class="fa fa-skype"></a>
+  <a href="#" class="fa fa-reddit"></a>
+  <a href="#" class="fa fa-pinterest"></a>
+</div>
+
+{% endblock content %}

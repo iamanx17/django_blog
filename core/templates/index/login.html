@@ -1,0 +1,84 @@
+{% extends 'core/base.html' %} 
+{% load static %} 
+<!--title-->
+{% block title %}
+Login | pirates venture
+{% endblock title %} 
+<!--xxx-->
+
+<!--css-->
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock css %} 
+<!--xxx-->
+
+{% block banner %}
+<section class="banner mb-5">
+  <video
+    src="{% static 'images/video.mp4' %}"
+    class="img-fluid"
+    autoplay
+    muted
+    loop
+  ></video>
+  <div class="overlay"></div>
+</section>
+{% endblock banner %} 
+
+
+{% block alert %}
+
+  <div class="container">
+    {% for i in messages %}
+    
+<div class="alert alert-{{i.tags}} alert-dismissible fade show" role="alert">
+  <strong>{{i.tags}}</strong>{{i}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>    
+    {% endfor %}
+  </div>
+{% endblock alert %} 
+
+<!--xxx-->
+
+{% block content %}
+<!-- Login section start-->
+
+<div class="container context mt-5 mb-5" id="login">
+  <h4 class="text-center display-4 font-weight-bold">Login</h4>
+  <hr class="w-50 mx-auto mb-5 mt-4" />
+
+  <div class="contact w-25 mx-auto">
+    <form action="/account/login/" method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input
+        required
+          type="text"
+          name="username"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Password</label>
+        <input
+        required
+          type="Password"
+          name="passwordx"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!--login section end-->
+{% endblock content %}

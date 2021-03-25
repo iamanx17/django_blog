@@ -1,0 +1,252 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+/*---adding padding to context---*/
+.context:before {
+  content: "";
+  height: 4rem;
+  display: block;
+}
+
+/* -----end----- */
+
+/*--overlay start--*/
+.overlay {
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/*---overlay end---*/
+
+/* navbar section start css */
+.navbar {
+  height: 60px;
+  letter-spacing: 2px;
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.navbar .mid-nav {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link:hover {
+  color: #1ebba3;
+}
+/* navbar section end css */
+
+/*--banner section start---*/
+
+.banner img {
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.banner .heading {
+  position: absolute;
+  top: 45%;
+  min-width: 100%;
+}
+.banner .heading h5 {
+  font-size: 4em;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.banner .heading h1 {
+  font-size: 5em;
+  font-family: "Montserrat", sans-serif;
+}
+.banner .heading p {
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  word-spacing: 5px;
+}
+
+/*---banner section end---*/
+
+/*--about section start--*/
+#about .row .mex{
+  width: 40%;
+  
+}
+#about .row button {
+  width: 40%;
+  padding: 15px 22px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+}
+#about .row button:hover {
+  border: 2px solid #1ebba3;
+}
+#about .row button a {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+/*--about section end---*/
+
+
+/*--services section start--*/
+#projects .row .col .btn {
+  border: 2px solid transparent;
+}
+#projects .row .col .btn:hover {
+  border: 2px solid #1ebba3;
+}
+/*---services section end--*/
+
+/*--blog section start---*/
+#blog .row button {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 15px 22px;
+  border: 2px solid transparent;
+}
+#blog .row button:hover {
+  border: 2px solid #1ebba3;
+}
+#blog .row button a {
+  display: block;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+#blog .row .col a {
+  border: 2px solid transparent;
+}
+#blog .row .col a:hover {
+  border: 2px solid #1ebba3;
+}
+
+/*--blog section end---*/
+
+/*--newsletter section start--*/
+.news {
+  background-color: #f8fafb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.news h3 {
+  font-family: "poppins", sans-serif;
+  letter-spacing: 3px;
+  line-height: 50px;
+}
+
+.news p {
+  font-family: "poppins", sans-serif;
+  font-weight: 400;
+}
+
+.news form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.news form input{
+  min-width: 100px;
+}
+
+.news form a {
+  text-decoration: none;
+}
+
+.news button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  border: 2px solid transparent;
+}
+.news button:hover {
+  border: 2px solid #1ebba3;
+}
+/*---newsletter end--*/
+
+/*--contact section start---*/
+#contact button {
+  border: 2px solid transparent;
+}
+#contact button:hover {
+  border: 2px solid #1ebba3;
+}
+/*--contact section end---*/
+
+/*--footer section start--*/
+
+#footer {
+  letter-spacing: 2px;
+  word-spacing: 5px;
+  font-family: "monospace", sans-serif;
+}
+#footer a {
+  text-decoration: none;
+}
+
+/*--footer section end---*/
+
+
+/* -------media query-------*/
+
+@media screen and (max-width: 1100px) {
+  #about .row button {
+    width: 40%;
+    padding: 8px 18px;
+  }
+
+  #about .row button a {
+    font-size: 0.8rem;
+  }
+  #blog .row button{
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .banner .heading {
+    top: 25%;
+  }
+  .banner .heading h5 {
+    font-size: 3em;
+  }
+
+  .banner .heading h1 {
+    font-size: 2em;
+  }
+
+  .banner .heading p {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .banner .heading {
+    top: 40%;
+  }
+  
+}
+

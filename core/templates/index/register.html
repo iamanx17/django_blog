@@ -1,0 +1,122 @@
+{% extends 'core/base.html' %} 
+{% load static %}
+{% block title %}Register here | pirates venture{%endblock title %} 
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}" />
+{% endblock css %} 
+
+{% block banner %}
+<section class="banner mb-5">
+  <video src="{% static 'images/video.mp4' %}" class="img-fluid" autoplay muted loop></video>
+  <div class="overlay"></div>
+</section>
+{% endblock banner %}
+
+{% block alert %}
+
+ 
+  <div class="container">
+    {% for i in messages %}
+    
+<div class="alert alert-{{i.tags}} alert-dismissible fade show" role="alert">
+  <strong>{{i.tags}}</strong>{{i}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> 
+    {% endfor %}
+  </div>
+{% endblock alert %}
+
+{% block content %}
+
+<!--register section start-->
+
+<div class="container context mt-5 mb-5" id="register">
+  <h4 class="text-center display-4 font-weight-bold">Register here</h4>
+  <hr class="w-50 mx-auto mb-5 mt-4" />
+
+  <div class="contact w-50 mx-auto">
+    <form action="/account/register/" method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input
+        required
+          type="email"
+          name="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input
+        required
+          type="text"
+          name="username"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">First name</label>
+        <input
+        required
+          type="text"
+          name="first_name"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Last name</label>
+        <input
+        required
+          type="text"
+          name="last_name"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Password</label>
+        <input
+        required
+          type="Password"
+          name="password1"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label"
+          >Confirm Your Password</label
+        >
+        <input
+        required
+          type="Password"
+          name="password2"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+
+      <div id="emailHelp" class="form-text mt-2 mb-4">
+        We'll never share your email with anyone else.
+      </div>
+
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+  </div>
+</div>
+<!--Register section end-->
+
+{% endblock content %}

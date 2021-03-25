@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/blogpost.css' %}">
+{% endblock css %}
+
+{% block title %}
+Search results | Pirates Venture
+{% endblock title%} 
+
+
+
+{% block banner %}
+<section class="banner mb-5">
+  <video src="{% static 'images/video.mp4' %}" class="img-fluid" autoplay muted loop></video>
+  <div class="overlay"></div>
+</section>
+{% endblock banner %}
+
+{% block content %}
+
+<!--blog section start-->
+<div class="container context mb-5" id="blog" style='min-height:300px;'>
+  <h3 class="text-center display-4">Search results</h3>
+  <hr class="w-50 mx-auto" />
+
+  <!--col start-->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for i in bpost %}
+
+    <div class="col">
+      <div class="card h-100">
+        <img src="{{i.thumbnail}}" class="card-img-top" alt="Blog post thumbnail" />
+        <div class="card-body">
+          <h5 class="card-title">{{i.title}}</h5>
+          <a href="/blog/blogposts/{{i.slug}}" class="btn btn-dark"
+            >Read more</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+
+  <!--col end-->
+
+  <!--blog section end-->
+
+  {% endblock content %}
